@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>XTwitter - Acontecendo agora</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         body {
@@ -20,7 +21,7 @@
 
         <!-- Lado direito: Texto e botões -->
         <div class="w-1/2 flex flex-col justify-center px-16">
-            <h1 class="text-5xl font-bold mb-8">Acontecendo agora</h1>
+            <h1 class="text-5xl font-bold mb-8">XTwitter - Acontecendo agora</h1>
 
             <h2 class="text-2xl font-semibold mb-6">Inscreva-se hoje</h2>
 

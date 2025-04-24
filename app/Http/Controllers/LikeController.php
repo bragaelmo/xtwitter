@@ -10,7 +10,7 @@ class LikeController extends Controller
 {
     public function toggle(Post $post)
     {
-        Log::info('REQUISICAO ' . $post);
+        Log::info('Req Like ' . $post);
         $like = $post->likes()->where('user_id', auth()->id())->first();
 
         if ($like) {
