@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h3 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Home') }}
-        </h2>
+        </h3>
     </x-slot>
 
     <div class="max-w-xl mx-auto mt-10">
@@ -14,12 +14,26 @@
 
         <hr class="mb-4">
 
-        @foreach($posts as $post)
-            <div class="mb-4 p-4 border rounded">
-                <strong>{{ $post->user->name }}</strong>
-                <p>{{ $post->content }}</p>
-                <small class="text-gray-500">{{ $post->created_at->diffForHumans() }}</small>
-            </div>
-        @endforeach
-    </div>
+        <div id="tettes-list">
+            @foreach($posts as $post)
+                <div class="mb-4 p-4 border rounded">
+                    <strong>{{ $post->user->name }}</strong>
+                    <p>{{ $post->content }}</p>
+                    <small class="text-gray-500">{{ $post->created_at->diffForHumans() }}</small>
+                </div>
+            @endforeach
+        </div>
+
+    <script>
+        function atualizarTettes() {
+            fetch('{{ route('posts.live') }}')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('tettes-list').innerHTML = html;
+                });
+        }
+
+        // Atualiza a cada 5 segundos
+        setInterval(atualizarTettes, 5000);
+    </script>
 </x-app-layout>

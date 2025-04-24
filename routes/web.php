@@ -24,6 +24,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::get('/posts/live', function () {
+        $posts = \App\Models\Post::with('user')->latest()->get();
+        return view('partials.tettes', compact('posts'));
+    })->name('posts.live')->middleware('auth');
 });
 
 require __DIR__.'/auth.php';
