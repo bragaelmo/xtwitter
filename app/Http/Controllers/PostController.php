@@ -27,4 +27,10 @@ class PostController extends Controller
 
         return redirect()->back()->with('success', 'Post criado com sucesso!');
     }
+
+    public function refreshtittes(Request $request)
+    {
+        $posts = \App\Models\Post::with('user')->latest()->get();
+        return view('partials.tettes', compact('posts'));
+    }
 }

@@ -33,7 +33,7 @@
                 });
         }
 
-        // Atualiza a cada 5 segundos
-        setInterval(atualizarTettes, 5000);
+        // Atualiza a cada 1 segundos
+        setInterval(atualizarTettes, 1000);
     </script>
 </x-app-layout>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 
 Route::get('/', function () {
     if (Auth::check()) {
@@ -24,10 +25,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-    Route::get('/posts/live', function () {
-        $posts = \App\Models\Post::with('user')->latest()->get();
-        return view('partials.tettes', compact('posts'));
-    })->name('posts.live')->middleware('auth');
+    Route::get('/posts/live', [PostController::class, 'refreshtittes'])->name('posts.live');
+
+    Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like');
 });
 
 require __DIR__.'/auth.php';
